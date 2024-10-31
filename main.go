@@ -1,6 +1,7 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 
@@ -9,7 +10,8 @@ import (
 )
 
 func handleIndex(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("welcome"))
+	tmpl := template.Must(template.ParseFiles("templates/index.html"))
+	tmpl.Execute(w, nil)
 }
 
 func main() {
